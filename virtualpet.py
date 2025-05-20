@@ -25,7 +25,7 @@ class VirtualPet:
         self.running = False
 
         # Cargar imagen de ardilla y crear versiones rotadas (más grande)
-        original = Image.open("squirrel.png").resize((50, 50))
+        original = Image.open("squirrel_icon.png").resize((50, 50))
         self.images = {
             'N': ImageTk.PhotoImage(original.rotate(90)),
             'E': ImageTk.PhotoImage(original),
@@ -120,16 +120,19 @@ class App:
 
         self.pet = VirtualPet(self.canvas)
 
-        self.text = tk.Text(root, height=6)
+        # Crear una nueva ventana para el editor de código
+        self.editor_window = tk.Toplevel(self.root)
+        self.editor_window.title("Code Editor")
+        self.text = tk.Text(self.editor_window, height=15, width=60)
         self.text.pack()
 
-        self.run_button = tk.Button(root, text="Ejecutar", command=self.run_code)
+        self.run_button = tk.Button(self.editor_window, text="Run", command=self.run_code)
         self.run_button.pack(side=tk.LEFT)
 
-        self.stop_button = tk.Button(root, text="Parar", command=self.pet.stop)
+        self.stop_button = tk.Button(self.editor_window, text="Stop", command=self.pet.stop)
         self.stop_button.pack(side=tk.LEFT)
 
-        self.reset_button = tk.Button(root, text="Reset", command=self.pet.reset)
+        self.reset_button = tk.Button(self.editor_window, text="Reset", command=self.pet.reset)
         self.reset_button.pack(side=tk.LEFT)
 
     def run_code(self):
