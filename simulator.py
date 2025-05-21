@@ -1,7 +1,8 @@
+# simulator.py
 import tkinter as tk
 import time
 
-CELL_SIZE = 60
+CELL_SIZE = 50
 ROWS = 10
 COLS = 10
 
@@ -92,7 +93,7 @@ def run(program):
     global _pet
     root = tk.Tk()
     root.title("Virtual Pet Simulator")
-    canvas = tk.Canvas(root, width=COLS * CELL_SIZE, height=ROWS * CELL_SIZE)
+    canvas = tk.Canvas(root, width=COLS * CELL_SIZE + 2, height=ROWS * CELL_SIZE + 2)
     canvas.pack()
     _pet = VirtualPet(canvas)
     program()
